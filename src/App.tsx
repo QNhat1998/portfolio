@@ -1,19 +1,13 @@
 // src/App.tsx
 
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 import Loading from "./components/Loading";
-
-function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="max-w-7xl my-8">{children}</div>
-    </div>
-  );
-}
+import Layout from "./components/Layout";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +35,14 @@ export default function App() {
               element={
                 <Layout>
                   <HomePage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/project/:projectId"
+              element={
+                <Layout>
+                  <ProjectDetailPage />
                 </Layout>
               }
             />

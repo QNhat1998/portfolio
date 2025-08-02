@@ -6,4 +6,6 @@ declare module "react-icons/fa" {
   export const FaProjectDiagram: IconType;
   export const FaEnvelope: IconType;
   export const FaFileDownload: IconType;
+  export const FaHornbill: IconType;
+  export const FaProjectDiagram: IconType;
 }

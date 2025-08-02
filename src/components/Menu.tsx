@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaHome, FaUserAlt, FaEnvelope } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaEnvelope, FaHornbill, FaProjectDiagram } from "react-icons/fa";
 import { FaGithub, FaLinkedin, FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa6";
 
 interface MenuItem {
@@ -21,6 +21,8 @@ interface SocialLink {
 const menuItems: MenuItem[] = [
   { id: "home", icon: FaHome, label: "Home", sectionId: "home" },
   { id: "about", icon: FaUserAlt, label: "About", sectionId: "about" },
+  { id: "skill", icon: FaHornbill, label: "Languages & Technologies", sectionId: "skill" },
+  { id: "project", icon: FaProjectDiagram, label: "Projects", sectionId: "project" },
   { id: "contact", icon: FaEnvelope, label: "Contact", sectionId: "contact" },
 ];
 
@@ -103,8 +105,8 @@ export default function Menu() {
   }, []);
 
   return (
-    <nav className="w-72 flex flex-col gap-4 fixed z-50">
-      <div className="bg-white rounded-2xl shadow-lg p-4">
+    <nav className="w-75 flex-col gap-4 fixed z-50 lg:flex hidden">
+      <div className="bg-black dark:bg-white rounded-2xl shadow-lg p-4">
         <div className="flex flex-col space-y-6">
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -117,30 +119,30 @@ export default function Menu() {
                   setActiveItem(item.id);
                   scrollToSection(item.sectionId);
                 }}
-                className={`relative flex items-center justify-between space-x-3 p-3 rounded-lg transition-all duration-300 group ${isActive ? "text-black" : "text-gray-700 hover:text-black "}`}
+                className={`relative flex items-center justify-between  p-3 rounded-lg transition-all duration-300 group ${isActive ? "text-white dark:text-black" : "text-gray-300 dark:text-gray-700 hover:text-white dark:hover:text-black"}`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {/* Label */}
-                <span className={`font-medium transition-colors duration-300 ${isActive ? "text-black" : "text-gray-700 group-hover:text-black"}`}>{item.label}</span>
+                <span className={`font-medium transition-colors duration-300 ${isActive ? "text-white dark:text-black" : "text-gray-300 dark:text-gray-700 group-hover:text-white dark:group-hover:text-black"}`}>{item.label}</span>
 
                 {/* Icon */}
-                <div className={`transition-colors duration-300 ${isActive ? "text-black" : "text-gray-600 group-hover:text-black"}`}>
+                <div className={`transition-colors duration-300 ${isActive ? "text-white dark:text-black" : "text-gray-400 dark:text-gray-600 group-hover:text-white dark:group-hover:text-black"}`}>
                   <Icon className="text-xl" />
                 </div>
 
                 {/* Active indicator - border bottom */}
-                {isActive && <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 bg-black rounded-full" layoutId="activeIndicator" initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 0.3 }} />}
+                {isActive && <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white dark:bg-black rounded-full" layoutId="activeIndicator" initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 0.3 }} />}
               </motion.button>
             );
           })}
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-lg p-4">
+      <div className="bg-black dark:bg-white rounded-2xl shadow-lg p-4">
         <div className="p-3">
-          <p className="font-medium text-gray-800 mb-2">Contact Info</p>
-          <div className="space-y-2 text-sm text-gray-600">
+          <p className="font-medium text-gray-200 dark:text-gray-800 mb-2">Contact Info</p>
+          <div className="space-y-2 text-sm text-gray-400 dark:text-gray-600">
             <div>
               <p className="font-medium">Phone:</p>
               <span>+(84) 346 062 720</span>
@@ -153,13 +155,13 @@ export default function Menu() {
         </div>
 
         <div className="p-3">
-          <p className="font-medium text-gray-800 mb-3">Social Media</p>
+          <p className="font-medium text-gray-200 dark:text-gray-800 mb-3">Social Media</p>
           <div className="flex justify-between">
             {socialLinks.map((social) => {
               const SocialIcon = social.icon;
               return (
-                <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-center w-10 h-10 bg-white rounded-xl transition-all duration-300 group hover:border-2 hover:border-black ${social.color}`}>
-                  <SocialIcon className="text-black text-lg" />
+                <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-center w-10 h-10 bg-black dark:bg-white rounded-xl transition-all duration-300 group hover:border-2 hover:border-white dark:hover:border-black ${social.color}`}>
+                  <SocialIcon className="text-white dark:text-black text-lg" />
                 </a>
               );
             })}
