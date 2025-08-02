@@ -34,14 +34,6 @@ function Layout({ children }: { children: React.ReactNode }) {
     return () => clearInterval(interval);
   }, []);
 
-  // Initialize theme from localStorage
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    }
-  }, []);
-
   return (
     <div className="min-h-screen bg-white dark:bg-black overflow-hidden relative">
       {/* Shooting Stars Background */}

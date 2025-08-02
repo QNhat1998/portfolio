@@ -8,6 +8,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import Loading from "./components/Loading";
 import Layout from "./components/Layout";
+import { ThemeProvider } from "./contexts/ThemeProvider";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,41 +23,43 @@ export default function App() {
   }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <motion.div key="loading" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-          <Loading />
-        </motion.div>
-      ) : (
-        <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Layout>
-                  <HomePage />
-                </Layout>
-              }
-            />
-            <Route
-              path="/project/:projectId"
-              element={
-                <Layout>
-                  <ProjectDetailPage />
-                </Layout>
-              }
-            />
-            <Route
-              path="*"
-              element={
-                <Layout>
-                  <ErrorPage />
-                </Layout>
-              }
-            />
-          </Routes>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <ThemeProvider>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <motion.div key="loading" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+            <Loading />
+          </motion.div>
+        ) : (
+          <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Layout>
+                    <HomePage />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/project/:projectId"
+                element={
+                  <Layout>
+                    <ProjectDetailPage />
+                  </Layout>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <Layout>
+                    <ErrorPage />
+                  </Layout>
+                }
+              />
+            </Routes>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </ThemeProvider>
   );
 }
